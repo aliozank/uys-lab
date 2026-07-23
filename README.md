@@ -5,8 +5,8 @@ Uçuş Yönetim Sistemi analiz dokümanında yer alan teknolojileri küçük ve 
 ## İlerleme
 
 - [x] Flight Mock Data Generator
-- [ ] Spring REST Basics
-- [ ] MySQL and JPA
+- [x] Spring REST Basics
+- [x] MySQL and JPA
 - [ ] Liquibase
 - [ ] MapStruct
 - [ ] Spring Security and JWT
