@@ -1,0 +1,17 @@
+  databaseChangeLog:
+    - changeSet:
+        id: 003-create-airline-name-index
+        author: alikaracor
+
+        changes:
+          - createIndex:
+              tableName: airlines
+              indexName: idx_airlines_name
+              columns:
+                - column:
+                    name: name
+
+        rollback:
+          - dropIndex:
+              tableName: airlines
+              indexName: idx_airlines_name

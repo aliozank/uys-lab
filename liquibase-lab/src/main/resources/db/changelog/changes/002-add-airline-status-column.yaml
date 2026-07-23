@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-add-airline-status-column
+      author: alikaracor
+
+      changes:
+        - addColumn:
+            tableName: airlines
+            columns:
+              - column:
+                  name: status
+                  type: VARCHAR(20)
+                  defaultValue: ACTIVE
+                  constraints:
+                    nullable: false
+
+      rollback:
+        - dropColumn:
+            tableName: airlines
+            columnName: status
