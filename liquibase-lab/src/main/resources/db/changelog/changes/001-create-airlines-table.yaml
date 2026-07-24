@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-airlines-table
+      author: alikaracor
+
+      changes:
+        - createTable:
+            tableName: airlines
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: iata_code
+                  type: VARCHAR(2)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: icao_code
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+      rollback:
+        - dropTable:
+            tableName: airlines
