@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Flight Status WebSocket Lab</title>
+</head>
+<body>
+
+<h2>Uçuş Durumu</h2>
+
+<p id="connection-status">Bağlantı kuruluyor...</p>
+
+<input id="flight-number"
+       type="text"
+       placeholder="Uçuş numarası">
+
+<input id="flight-status"
+       type="text"
+       placeholder="Uçuş durumu">
+
+<button onclick="sendFlightStatus()">
+    Durumu Gönder
+</button>
+
+<h3>Gelen mesajlar</h3>
+
+<ul id="messages"></ul>
+
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.3.0/bundles/stomp.umd.min.js"></script>
+
+<script>
+    const client = new StompJs.Client({
+        brokerURL: "ws://localhost:8080/ws",
+        reconnectDelay: 5000
+    });
+
+    client.onConnect = function () {
+        document.getElementById("connection-status").textContent =
+            "WebSocket bağlantısı kuruldu";
+
+        client.subscribe(
+            "/topic/flight-status",
+            function (message) {
+                const flight = JSON.parse(message.body);
+
+                const listItem = document.createElement("li");
+
+                listItem.textContent =
+                    flight.flightNumber + " - " + flight.status;
+
+                document
+                    .getElementById("messages")
+                    .appendChild(listItem);
+            }
+        );
+    };
+
+    client.onWebSocketError = function () {
+        document.getElementById("connection-status").textContent =
+            "WebSocket bağlantı hatası";
+    };
+
+    client.activate();
+
+    function sendFlightStatus() {
+        const flightNumber =
+            document.getElementById("flight-number").value;
+
+        const status =
+            document.getElementById("flight-status").value;
+
+        client.publish({
+            destination: "/app/flight-status",
+            body: JSON.stringify({
+                flightNumber: flightNumber,
+                status: status
+            })
+        });
+    }
+</script>
+
+</body>
+</html>
