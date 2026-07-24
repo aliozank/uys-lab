@@ -11,7 +11,7 @@ Uçuş Yönetim Sistemi analiz dokümanında yer alan teknolojileri küçük ve 
 - [x] MapStruct
 - [ ] Spring Security and JWT
 - [x] Redis
-- [ ] Kafka
+- [x] Kafka
 - [ ] Microservices
 - [ ] Flight Archive Service
 - [ ] Vue 3 and Element Plus
