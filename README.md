@@ -9,13 +9,13 @@ Uçuş Yönetim Sistemi analiz dokümanında yer alan teknolojileri küçük ve 
 - [x] MySQL and JPA
 - [x] Liquibase
 - [x] MapStruct
-- [ ] Spring Security and JWT
+- [x] Spring Security and JWT
 - [x] Redis
 - [x] Kafka
 - [ ] Microservices
 - [ ] Flight Archive Service
 - [ ] Vue 3 and Element Plus
-- [ ] WebSocket
+- [x] WebSocket
 - [ ] Testing and Testcontainers
 - [ ] Docker and Kubernetes
 - [ ] Monitoring and CI/CD
