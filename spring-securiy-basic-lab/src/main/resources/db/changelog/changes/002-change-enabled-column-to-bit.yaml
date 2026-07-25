@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-change-enabled-column-to-bit
+      author: alikaracor
+      changes:
+        - modifyDataType:
+            tableName: users
+            columnName: enabled
+            newDataType: BIT(1)
