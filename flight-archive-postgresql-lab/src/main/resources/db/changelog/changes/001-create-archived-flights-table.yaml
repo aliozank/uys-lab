@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-archived-flights-table
+      author: alikaracor
+      changes:
+        - createTable:
+            tableName: archived_flights
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: event_id
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+                    uniqueConstraintName: uk_archived_flights_event_id
+
+              - column:
+                  name: flight_number
+                  type: VARCHAR(20)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: origin_icao_code
+                  type: VARCHAR(4)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: destination_icao_code
+                  type: VARCHAR(4)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: actual_departure
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: actual_arrival
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: archived_at
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
