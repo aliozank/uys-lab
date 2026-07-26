@@ -1,0 +1,4 @@
+flightNumber,airlineIataCode,aircraftTypeId,originIcaoCode,destinationIcaoCode,flightDate,std,sta,flightType
+TK101,TK,1,LTFM,EDDF,2026-07-27,10:30,13:20,INTERNATIONAL
+PC202,PC,2,LTFJ,LTAC,2026-07-28,08:00,09:10,DOMESTIC
+XQ303,XQ,3,LTAI,EGLL,2026-07-29,14:15,17:45,INTERNATIONAL
