@@ -18,4 +18,33 @@ services:
     environment:
       REFERENCE_SERVICE_BASE_URL: http://reference-service:8081
     depends_on:
-      - rererence-service
+      - reference-service
+
+
+  prometheus:
+      image: prom/prometheus:v3.13.0
+      container_name: prometheus
+      ports:
+        - "9090:9090"
+      volumes:
+        - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      depends_on:
+        - reference-service
+
+
+
+  grafana:
+        image: grafana/grafana:12.4.0
+        container_name: grafana
+        ports:
+          - "3000:3000"
+        environment:
+          GF_SECURITY_ADMIN_USER: admin
+          GF_SECURITY_ADMIN_PASSWORD: admin
+        volumes:
+          - grafana-data:/var/lib/grafana
+        depends_on:
+          - prometheus
+
+volumes:
+  grafana-data:
