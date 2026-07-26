@@ -1,0 +1,21 @@
+services:
+
+  reference-service:
+    build:
+      context: ./reference-service
+    image: reference-service:1.0
+    container_name: reference-service
+    ports:
+      - "8081:8081"
+
+  flight-service:
+    build:
+      context: ./flight-service
+    image: flight-service:1.0
+    container_name: flight-service
+    ports:
+      - "8082:8082"
+    environment:
+      REFERENCE_SERVICE_BASE_URL: http://reference-service:8081
+    depends_on:
+      - rererence-service
