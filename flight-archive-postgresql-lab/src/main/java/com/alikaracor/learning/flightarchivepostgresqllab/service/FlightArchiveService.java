@@ -1,6 +1,8 @@
 package com.alikaracor.learning.flightarchivepostgresqllab.service;
 
 import com.alikaracor.learning.flightarchivepostgresqllab.dto.ArchivedFlightResponse;
+import com.alikaracor.learning.flightarchivepostgresqllab.dto.DailyFlightReportResponse;
+import com.alikaracor.learning.flightarchivepostgresqllab.dto.RouteReportResponse;
 import com.alikaracor.learning.flightarchivepostgresqllab.event.FlightCompletedEvent;
 import com.alikaracor.learning.flightarchivepostgresqllab.model.ArchivedFlight;
 import com.alikaracor.learning.flightarchivepostgresqllab.repository.ArchivedFlightRepository;
@@ -68,6 +70,20 @@ public class FlightArchiveService {
         return toResponse(archivedFlight);
     }
 
+    @Transactional(readOnly = true)
+    public List<RouteReportResponse> getRouteReport() {
+
+        return archivedFlightRepository
+                .findRouteReport()
+                .stream()
+                .map(report -> new RouteReportResponse(
+                        report.getOriginIcaoCode(),
+                        report.getDestinationIcaoCode(),
+                        report.getFlightCount()
+                ))
+                .toList();
+    }
+
     private ArchivedFlightResponse toResponse(
             ArchivedFlight archivedFlight
     ) {
@@ -83,4 +99,19 @@ public class FlightArchiveService {
                 archivedFlight.getArchivedAt()
         );
     }
+
+    @Transactional(readOnly = true)
+    public List<DailyFlightReportResponse> getDailyFlightReport() {
+
+        return archivedFlightRepository
+                .findDailyFlightReport()
+                .stream()
+                .map(report -> new DailyFlightReportResponse(
+                        report.getFlightDate(),
+                        report.getFlightCount(),
+                        report.getAverageDurationMinutes()
+                ))
+                .toList();
+    }
+
 }
