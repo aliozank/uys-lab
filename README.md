@@ -14,10 +14,10 @@ Uçuş Yönetim Sistemi analiz dokümanında yer alan teknolojileri küçük ve 
 - [x] Kafka
 - [x] Microservices
 - [x] Flight Archive Service
-- [ ] Vue 3 and Element Plus
+- [x] Vue 3 and Element Plus
 - [x] WebSocket
 - [x] Testing and Testcontainers
 - [x] Docker and Kubernetes
-- [ ] Monitoring and CI/CD
+- [x] Monitoring and CI/CD
 
 Her laboratuvar kendi klasöründe bağımsız bir proje olarak tutulur.
